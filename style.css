@@ -1,0 +1,618 @@
+/* === Глобальні стилі === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #ededed; /* основний фон */
+  position: relative;
+  overflow-x: hidden;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('img/Background-ОДЯГ-ДРУК.svg') center/cover no-repeat;
+  pointer-events: none; /* щоб не заважав клікам */
+  opacity: 0,15;
+  z-index: 0;
+}
+
+section {
+  scroll-margin-top: 50vh;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 120px;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.nav-item {
+  background: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none; 
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #00C853;
+}
+
+.main-illustration {
+  width: 900px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-image: url('img/Image Workshop Action 1.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 30px;
+}
+
+.order-btn,
+.submit-btn {
+  width: clamp(200px, 60vw, 320px);
+  height: 50px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  margin: 40px auto 0;
+  display: block;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  border: none;
+}
+.order-btn:hover,
+.submit-btn:hover { background: #00C853;
+
+}
+
+
+.order-btn:hover {
+  background: #00C853;
+}
+
+/* === ПОСЛУГИ === */
+.services {
+  padding: 100px 0 80px;
+  text-align: center;
+  background: #ededed;
+}
+
+.services-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  font-family: 'Inter', serif;
+}
+
+.services-columns {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto 10px;
+}
+
+.service-column {
+  flex: 1;
+  min-width: 300px;
+  max-width: 340px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 24px 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 640px;
+}
+
+.service-image {
+  width: 130px;
+  height: auto;
+  margin-bottom: 0px;
+}
+
+.service-column h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.service-subtitle {
+  font-weight: 700;
+  margin: 20px 0 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.service-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-column li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* === ПРОЕКТИ (чисто й без конфліктів) === */
+.projects-carousel{
+  padding: 60px 0;
+  text-align: center;
+  background: #ededed;
+}
+
+.carousel-title{
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  font-family: 'Inter', serif;
+}
+
+/* Стрілки зовні контейнера */
+.carousel-outer{
+  position: relative;
+  max-width: 560px;           /* трохи ширше для планшета */
+  margin: 0 auto;
+}
+
+.carousel-container{
+  max-width: 560px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;           /* обрізаємо все зайве */
+  padding: 0;                 /* важливо: без внутрішніх падінгів */
+}
+
+.carousel-slide-wrapper{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;           /* страховка, щоб краї не виглядали */
+}
+
+/* Стрічка слайдів */
+.carousel-slide{
+  display: flex;
+  gap: 0;
+  width: 100%;                /* замість 300% */
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+/* Кожен кадр рівно 100% ширини контейнера */
+.carousel-slide > img{
+  flex: 0 0 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Кнопки-стрілки без підкладу, лише SVG */
+.carousel-button{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 8px;               /* більша клікабельна зона */
+}
+
+.carousel-button img{
+  width: 28px;
+  height: 28px;
+  transition: filter 0.2s ease;
+}
+
+/* Ховер: фарбуємо тільки іконку у зелений */
+.carousel-button:hover img{
+  filter: invert(56%) sepia(75%) saturate(660%) hue-rotate(97deg) brightness(95%) contrast(98%);
+}
+
+/* Позиції стрілок */
+.carousel-button.left{  left: -56px; }
+.carousel-button.right{ right: -56px; }
+
+@media (max-width: 768px){
+  .carousel-outer,
+  .carousel-container{ max-width: 100%; padding: 0; }
+  .carousel-button.left{  left: 6px; }
+  .carousel-button.right{ right: 6px; }
+}
+
+/* Точки-навігація під слайдером */
+.carousel-nav{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.carousel-dot{
+  width: 10px; height: 10px; margin: 0 5px;
+  background: #aaa; border-radius: 50%; cursor: pointer;
+}
+.carousel-dot.active{ background: #000; }
+
+
+
+/* === КОМПАНІЯ === */
+.company-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #ededed;
+}
+
+.company-section img {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 30px;
+  display: block;
+}
+
+.company-section h2 {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  font-family: 'Inter', serif;
+}
+
+.company-section p {
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;        /* комфортний інтервал */
+  text-align: center;      /* по центру */
+  white-space: normal;     /* щоб керував line-height */
+}
+
+/* === КОНТАКТИ === */
+.contacts-section {
+  padding: 60px 20px;
+  background: #ededed;
+  text-align: center;
+}
+
+.contacts-section h2 {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  font-family: 'Inter', serif;
+}
+
+.contacts-section p {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-icons a {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s;
+}
+
+.contact-icons a:hover {
+  transform: scale(1.1);
+}
+
+.contact-icons img {
+  width: 100%;
+  margin-bottom: 20px;
+  height: auto;
+  display: block;
+}
+
+/* === Адаптив === */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-item {
+    font-size: 14px;
+  }
+
+  .main-illustration {
+    width: 100% !important;
+    background-size: cover !important;
+    margin-top: 20px;
+  }
+
+  .services-columns {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .service-column {
+    width: 90%;
+    max-width: 95%;
+    min-height: unset;
+  }
+
+  .carousel-container{ 
+    max-width: 100%; 
+    padding: 0 12px; 
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: auto;
+  }
+
+  .carousel-button.left {
+    left: 5px;
+  }
+
+  .carousel-button.right {
+    right: 5px;
+  }
+
+  .order-btn {
+    width: clamp(200px, 70vw, 320px);
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    margin: 40px auto 0;
+    display: block;
+  }
+
+  .company-section h2,
+  .contacts-section h2 {
+    font-size: 28px;
+  }
+
+  .company-section p,
+  .contacts-section p {
+    font-size: 16px;
+  }
+
+  .contact-icons a {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 40px 20px;
+  max-width: 400px;
+  width: 90%;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-content .order-btn {
+  width: 200px;
+  height: 50px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  margin: 20px auto 0;
+  display: block;
+  transition: background 0.3s ease;
+  border: none;
+}
+
+.modal-content .order-btn:hover {
+  background: #00C853;
+}
+
+/* === ПРАЙС === */
+.price-section {
+  padding: 80px 20px;
+  background: #ededed;
+  text-align: center;
+}
+
+.price-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  font-family: 'Inter', serif;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 32px;
+}
+
+.price-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  padding: 20px 18px;
+  text-align: left;
+}
+
+.price-card h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.price-block { 
+  margin-top: 12px; 
+}
+
+.price-block h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.price-text {
+  margin: 8px 0 10px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.price-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.price-list li { margin: 2px 0; }
+
+.price-note {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .price-grid { grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .price-grid { grid-template-columns: 1fr; }
+  .price-section { padding: 60px 16px; }
+  .price-title { font-size: 28px; }
+}
+
+/* === Прайс: планшетна версія (3-тя картка по центру) === */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .price-grid {
+    grid-template-columns: 1fr 1fr; /* 2 колонки */
+    justify-content: center;
+  }
+
+  .price-grid .price-card:nth-child(3) {
+    grid-column: 1 / -1;     /* займає ряд */
+    max-width: %;          /* звужуємо */
+    margin: 0 auto;          /* центруємо */
+  }
+}

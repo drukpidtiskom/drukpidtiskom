@@ -1,0 +1,377 @@
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Друк Під Тиском</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    section {
+      scroll-margin-top: -3vh;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+  </style> 
+</head>
+<body>
+  <!-- Модальне вікно -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <form action="https://formsubmit.co/drukpidtiskom@gmail.com" method="POST" enctype="multipart/form-data">
+        <h3>Залишити заявку</h3>
+        <input type="text" name="name" placeholder="Ім’я" required>
+        <input type="tel" name="phone" placeholder="+380..." pattern="\+380\d{9}" required>
+        <textarea name="comment" placeholder="Коментар..."></textarea>
+        <input type="file" name="attachment">
+        <input type="hidden" name="_subject" value="Нове замовлення з сайту Друк Під Тиском">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://drukpidtiskom.com">
+<input type="text" name="_honey" style="display:none">
+        <button type="submit" class="submit-btn">ВІДПРАВИТИ</button>
+
+      </form>
+    </div>
+  </div>
+<div class="background-overlay"></div>
+  <div class="wrapper">
+    <div class="content">
+      <div class="header">
+        <div class="logo">
+          <img src="img/my-logo.svg" alt="Логотип" />
+        </div>
+        <nav class="nav">
+          <a class="nav-item" href="#services">ПОСЛУГИ</a>
+          <a class="nav-item" href="#projects">ПРОЕКТИ</a>
+          <a class="nav-item" href="#about">КОМПАНІЯ</a>
+          <a class="nav-item" href="#contacts">КОНТАКТИ</a>
+        </nav>
+      </div>
+      <div class="main-illustration"></div>
+      <a href="#price" class="order-btn price-btn">ПРАЙС</a>
+    </div>
+
+    <!-- FULL services section restored -->
+    <section class="services" id="services">
+      <h2 class="services-title">~ ПОСЛУГИ ~</h2>
+      <div class="services-columns">
+        <!-- Друк -->
+        <div class="service-column">
+          <img src="img/Print-Man.svg" alt="Друк на одязі" class="service-image" />
+          <h3>ДРУК НА ОДЯЗІ</h3>
+          <div class="service-subtitle">~ ШОВКОДРУК ~</div>
+          <ul>
+            <li>ШВИДКИЙ ДРУК</li>
+            <li>ВЕЛИКІ ТИРАЖІ</li>
+            <li>ВИГІДНИЙ ПРАЙС</li>
+            <li>ДРУК НА ОДЯЗІ</li>
+            <li>ДРУК НА ПАПЕРІ</li>
+            <li>ДРУК НА СКЛІ</li>
+            <li>ДРУК НА ПЛАСТИКУ</li>
+          </ul>
+          <div class="service-subtitle">~ ЦИФРОДРУК ~</div>
+          <ul>
+            <li>ДЕТАЛІЗАЦІЯ ПРИНТУ</li>
+            <li>СЕРЕДНІ ТИРАЖІ</li>
+            <li>ДРУК НА ОДЯЗІ</li>
+          </ul>
+          <div class="service-subtitle">~ DTF ~</div>
+          <ul>
+            <li>ДЕТАЛІЗАЦІЯ ПРИНТУ</li>
+            <li>СЕРЕДНІ ТИРАЖІ</li>
+            <li>ЗРУЧНИЙ</li>
+          </ul>
+        </div>
+        <!-- Пошиття -->
+        <div class="service-column">
+          <img src="img/Woman.svg" alt="Пошиття одягу" class="service-image" />
+          <h3>ПОШИТТЯ ОДЯГУ</h3>
+          <div class="service-subtitle">~ ФУТБОЛКИ ~</div>
+          <ul>
+            <li>ВІД 10 ДО 1000</li>
+            <li>ЯКІСНІ МАТЕРІАЛИ</li>
+            <li>ВИГІДНИЙ ПРАЙС</li>
+            <li>ЗРОБЛЕНІ ПІД ДРУК</li>
+            <li>РІЗНІ ФАСОНИ</li>
+            <li>БАГАТО КОЛЬОРІВ</li>
+          </ul>
+          <div class="service-subtitle">~ ХУДІ ~</div>
+          <ul>
+            <li>ВІД 10 ДО 1000</li>
+            <li>ЯКІСНІ МАТЕРІАЛИ</li>
+            <li>ВИГІДНИЙ ПРАЙС</li>
+            <li>ЗРОБЛЕНІ ПІД ДРУК</li>
+            <li>РІЗНІ ФАСОНИ</li>
+            <li>БАГАТО КОЛЬОРІВ</li>
+          </ul>
+          <div class="service-subtitle">~ ІНШИЙ ОДЯГ ~</div>
+        </div>
+        <!-- Проєктування -->
+        <div class="service-column">
+          <img src="img/Man.svg" alt="Кейс-проєктування" class="service-image" />
+          <h3>КЕЙС-ПРОЄКТУВАННЯ</h3>
+          <div class="service-subtitle">~ РОЗРОБКА ~</div>
+          <ul>
+            <li>РОЗРОБКА ЛЕКАЛ</li>
+            <li>РОЗРОБКА ПРИНТУ</li>
+            <li>РОЗРОБКА БІРКИ</li>
+            <li>РОЗРОБКА ЛОГО</li>
+            <li>ПІДБІР МАТЕРІАЛІВ</li>
+          </ul>
+          <div class="service-subtitle">~ ДИЗАЙН ~</div>
+          <ul>
+            <li>ДИЗАЙН СТІКЕРІВ</li>
+            <li>ВІЗУАЛІЗАЦІЯ ОДЯГУ</li>
+            <li>ХУДОЖНІ РОБОТИ</li>
+          </ul>
+          <div class="service-subtitle">~ ПІД КЛЮЧ ~</div>
+          <ul>
+            <li>ВИГОТОВЛЕННЯ ОДЯГУ</li>
+            <li>СУПРОВІД БРЕНДУ</li>
+            <li>ПОВНИЙ ЦИКЛ З НУЛЮ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="order-btn">ЗАМОВИТИ</div>
+    </section>
+
+    <!-- ПРОЕКТИ -->
+    <section class="projects-carousel" id="projects">
+  <h2 class="carousel-title">~ ПРОЕКТИ ~</h2>
+  <div class="carousel-outer">
+    <button class="carousel-button left" onclick="moveSlide(-1)">
+      <img src="img/arrow-left.svg" alt="←">
+    </button>
+
+    <div class="carousel-container">
+      <div class="carousel-slide-wrapper">
+        <div class="carousel-slide" id="carousel">
+          <img src="img/10.png" alt="Project 1">
+          <img src="img/project2.jpg" alt="Project 2">
+          <img src="img/project3.jpg" alt="Project 3">
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-button right" onclick="moveSlide(1)">
+      <img src="img/arrow-right.svg" alt="→">
+    </button>
+  </div>
+
+  <div class="carousel-caption" id="carousel-caption"></div>
+  <div class="carousel-nav">
+    <div class="carousel-dot active" onclick="moveToSlide(0)"></div>
+    <div class="carousel-dot" onclick="moveToSlide(1)"></div>
+    <div class="carousel-dot" onclick="moveToSlide(2)"></div>
+  </div>
+
+  <div class="order-btn">ЗАМОВИТИ</div>
+</section>
+
+<!-- ПРАЙС -->
+<section class="price-section" id="price">
+  <h2 class="price-title">~ ПРАЙС ~</h2>
+
+  <div class="price-grid">
+    <!-- ШОВКОДРУК -->
+    <article class="price-card">
+      <h3>ШОВКОДРУК</h3>
+      <p class="price-text">
+        Вартість розраховується індивідуально та залежить від:
+      </p>
+      <ul class="price-list">
+        <li>Розміру друку</li>
+        <li>Кількості кольорів</li>
+        <li>Тиражу (кількості одиниць)</li>
+        <li>Складності завдання</li>
+      </ul>
+      <p class="price-note">
+        Щоб отримати прорахунок, натисніть кнопку <strong>«Замовити»</strong> та прикріпіть файл із макетом.
+      </p>
+    </article>
+
+    <!-- ПОШИТТЯ -->
+    <article class="price-card">
+      <h3>ПОШИТТЯ</h3>
+      <div class="price-block">
+        <h4>Футболка без принту:</h4>
+        <ul class="price-list">
+          <li><strong>СТАНДАРТ</strong> — від 350 грн</li>
+          <li><strong>ПРЕМІУМ</strong> — від 450 грн</li>
+          <li><strong>HEAVY COTTON</strong> — від 500 грн</li>
+        </ul>
+      </div>
+      <div class="price-block">
+        <h4>Худі без принту:</h4>
+        <ul class="price-list">
+          <li><strong>СТАНДАРТ</strong> — від 700 грн</li>
+          <li><strong>ПРЕМІУМ</strong> — від 1000 грн</li>
+          <li><strong>HEAVY COTTON</strong> — від 1250 грн</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ІНШЕ -->
+    <article class="price-card">
+      <h3>ІНШЕ</h3>
+      <p class="price-text">
+        Ми спеціалізуємося на створенні одягу та друку під замовлення. Можемо нанести принт на ваші готові речі або
+        виготовити виріб з нуля за власними лекалами.
+      </p>
+      <p class="price-text">Пропонуємо <strong>комплексні кейси</strong> з повним виробничим циклом:</p>
+      <ul class="price-list">
+        <li>Розробка та підготовка макету;</li>
+        <li>Підбір тканин і матеріалів;</li>
+        <li>Пошиття виробу;</li>
+        <li>Друк і фінішна обробка.</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="order-btn">ЗАМОВИТИ</div>
+</section>
+
+    <!-- КОМПАНІЯ -->
+    <section class="company-section" id="about">
+      <h2>~ КОМПАНІЯ ~</h2>
+      <img src="img/Kharkiv ChatGPT 1.png" alt="Фото компанії">
+      <p>
+        Ми — Друк Під Тиском<br>
+        Друзі, які не зупинились навіть під сирени.<br>
+        Зібрались разом, щоб друкувати справжнє.<br>
+        Під тиском з характером.
+      </p>
+    </section>
+
+    <!-- КОНТАКТИ -->
+    <section class="contacts-section" id="contacts">
+      <h2>~ КОНТАКТИ ~</h2>
+      <p>м. Харків</p>
+      <div class="contact-icons">
+        <a href="https://t.me/yourlink" target="_blank">
+          <img src="img/telegram.svg" alt="Telegram">
+        </a>
+        <a href="viber://chat?number=%2B380000000000">
+          <img src="img/viber.svg" alt="Viber">
+        </a>
+        <a href="https://instagram.com/yourprofile" target="_blank">
+          <img src="img/instagram.svg" alt="Instagram">
+        </a>
+      </div>
+    </section>
+  </div>
+  <script>
+    const carousel = document.getElementById('carousel');
+    const caption = document.getElementById('carousel-caption');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentIndex = 0;
+
+    const captions = [
+      `<strong>~ Kontuziya Club ~</strong><br>
+       • Пошиття футболок 250 щільності •<br>
+       • Детальний цифровий друк розміру A3 •<br>
+       • Тираж від 50–200 одиниць •<br>
+       • Термін 1–2 тижні •`,
+      `<strong>~ Project 2 ~</strong><br>
+       • Пошиття футболок 250 щільності •<br>
+       • Детальний цифровий друк розміру A3 •<br>
+       • Тираж від 50–200 одиниць •<br>
+       • Термін 1–2 тижні •`,
+      `<strong>~ Project 3 ~</strong><br>
+       • Пошиття футболок 250 щільності •<br>
+       • Детальний цифровий друк розміру A3 •<br>
+       • Тираж від 50–200 одиниць •<br>
+       • Термін 1–2 тижні •`,
+    ];
+
+    function moveToSlide(index) {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+      caption.innerHTML = captions[index];
+      currentIndex = index;
+    }
+
+    function moveSlide(direction) {
+      let newIndex = currentIndex + direction;
+      if (newIndex < 0) newIndex = captions.length - 1;
+      if (newIndex >= captions.length) newIndex = 0;
+      moveToSlide(newIndex);
+    }
+
+    moveToSlide(0);
+  </script>
+
+  <script>
+  const modal = document.getElementById("orderModal");
+  const orderButtons = document.querySelectorAll(".order-btn");
+
+  orderButtons.forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      // якщо елемент всередині <form> — не чіпаємо (даємо формі відправитись)
+      if (this.closest('form')) return;
+
+      // "ПРАЙС" веде по якірю — не відкриваємо модалку
+      if (this.classList.contains("price-btn")) return;
+
+      // відкриваємо модалку тільки для кнопок "ЗАМОВИТИ"
+      if (this.textContent.trim().toUpperCase() === "ЗАМОВИТИ") {
+        e.preventDefault();
+        modal.style.display = "flex";
+      }
+    });
+  });
+
+  function closeModal(){ modal.style.display = "none"; }
+  window.onclick = (ev) => { if (ev.target === modal) closeModal(); };
+</script>
+
+
+  <script>
+  // Щоб браузер не стрибав по якорю сам
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // якщо в URL є #hash (наприклад, #contacts) — прибираємо його
+  const hadHash = !!location.hash;
+  if (hadHash) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+
+  // Збереження позиції скролу (працює і на моб. Safari)
+  const saveScroll = () => localStorage.setItem('scrollY', String(window.scrollY));
+  window.addEventListener('beforeunload', saveScroll);
+  window.addEventListener('pagehide', saveScroll);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveScroll(); });
+
+  // Відновлення після завантаження ВСІХ ресурсів
+  window.addEventListener('load', () => {
+    const y = parseInt(localStorage.getItem('scrollY') || '0', 10);
+    // Трошки відкласти, щоб лейаути від картинок устаканились
+    setTimeout(() => { window.scrollTo(0, isNaN(y) ? 0 : y); }, 50);
+  });
+</script>
+
+<div id="sent-toast" style="display:none; position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+  background:#000; color:#fff; padding:12px 16px; border-radius:10px; z-index:9999;">
+  Дякуємо! Ми отримали вашу заявку.
+</div>
+
+<script>
+  if (location.hash === '#sent') {
+    const t = document.getElementById('sent-toast');
+    if (t) {
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 4000);
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+
+</script>
+</body>
+</html>
