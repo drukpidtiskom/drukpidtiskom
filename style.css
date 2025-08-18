@@ -18,7 +18,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('img/Background-ОДЯГ-ДРУК.svg') center/cover no-repeat;
+  background: url('./Background-ОДЯГ-ДРУК.svg') center/cover no-repeat;
   pointer-events: none; /* щоб не заважав клікам */
   opacity: 0,15;
   z-index: 0;
@@ -83,7 +83,7 @@ section {
   width: 900px;
   height: auto;
   aspect-ratio: 16 / 9;
-  background-image: url('img/Image Workshop Action 1.svg');
+  background-image: url('./Image Workshop Action 1.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
