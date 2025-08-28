@@ -107,6 +107,18 @@ section {
   transition: background 0.3s ease;
   border: none;
 }
+
+.submit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-btn.loading {
+  justify-content: center;
+}
 .order-btn:hover,
 .submit-btn:hover { background: #00C853;
 
@@ -509,7 +521,6 @@ section {
   font-weight: bold;
   border-radius: 25px;
   text-align: center;
-  line-height: 50px;
   cursor: pointer;
   margin: 20px auto 0;
   display: block;
@@ -519,6 +530,100 @@ section {
 
 .modal-content .order-btn:hover {
   background: #00C853;
+}
+
+/* File upload styles */
+.file-upload-container {
+  margin-bottom: 15px;
+}
+
+.file-upload-label {
+  display: block;
+  padding: 12px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.file-upload-label:hover {
+  border-color: #00C853;
+}
+
+.file-upload-label span {
+  color: #666;
+  font-size: 14px;
+}
+
+.file-list {
+  margin-top: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.file-item .file-name {
+  flex: 1;
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-item .file-size {
+  color: #666;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.file-item .remove-file {
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.file-error {
+  color: #ff4444;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+/* Spinner styles */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-text {
+  transition: opacity 0.3s ease;
+}
+
+.submit-btn.loading .spinner {
+  display: block !important;
 }
 
 /* === ПРАЙС === */
@@ -612,7 +717,7 @@ section {
 
   .price-grid .price-card:nth-child(3) {
     grid-column: 1 / -1;     /* займає ряд */
-    max-width: %;          /* звужуємо */
+    max-width: 400px;          /* звужуємо */
     margin: 0 auto;          /* центруємо */
   }
 }
