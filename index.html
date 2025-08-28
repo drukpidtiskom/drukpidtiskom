@@ -21,19 +21,25 @@
   <div class="modal" id="orderModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">×</span>
-      <form action="https://formsubmit.co/drukpidtiskom@gmail.com" method="POST" enctype="multipart/form-data">
+      <form id="orderForm" enctype="multipart/form-data">
         <h3>Залишити заявку</h3>
-        <input type="text" name="name" placeholder="Ім’я" required>
-        <input type="tel" name="phone" placeholder="+380..." pattern="\+380\d{9}" required>
-        <textarea name="comment" placeholder="Коментар..."></textarea>
-        <input type="file" name="attachment">
-        <input type="hidden" name="_subject" value="Нове замовлення з сайту Друк Під Тиском">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://drukpidtiskom.github.io/drukpidtiskom/#sent">
-<input type="text" name="_honey" style="display:none">
-        <button type="submit" class="submit-btn">ВІДПРАВИТИ</button>
-
+        <input type="email" name="contact_mail" placeholder="Email" required>
+        <input type="tel" name="contact_phone" placeholder="+380..." pattern="\+380\d{9}" required title="Номер повинен бути у форматі +380...">
+        <textarea name="message" placeholder="Опишіть ваше замовлення..." required></textarea>
+        
+        <div class="file-upload-container">
+          <label for="attachments" class="file-upload-label">
+            <span>Прикріпити файли (макс. 5 файлів, кожен до 25MB)</span>
+            <input type="file" id="attachments" name="attachments" multiple accept="image/*,.pdf,.doc,.docx,.ai,.eps,.psd,.cdr" style="display: none;">
+          </label>
+          <div id="fileList" class="file-list"></div>
+          <div id="fileError" class="file-error" style="display: none;"></div>
+        </div>
+        
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">ВІДПРАВИТИ</span>
+          <div class="spinner" id="spinner" style="display: none;"></div>
+        </button>
       </form>
     </div>
   </div>
@@ -327,7 +333,21 @@
   });
 
   function closeModal(){ modal.style.display = "none"; }
-  window.onclick = (ev) => { if (ev.target === modal) closeModal(); };
+  
+  // Track if mouse was pressed on form
+  let mouseDownOnForm = false;
+  
+  // Mouse down anywhere - track if it was on form
+  document.addEventListener('mousedown', function(ev) {
+    mouseDownOnForm = ev.target.closest('.modal-content') !== null;
+  });
+  
+  // Click outside modal - only close if mouse wasn't pressed on form
+  window.addEventListener('click', function(ev) {
+    if (ev.target === modal && !mouseDownOnForm) {
+      closeModal();
+    }
+  });
 </script>
 
 
@@ -372,6 +392,169 @@
     }
   }
 
+</script>
+
+<script>
+// File upload handling and form submission
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('orderForm');
+  const fileInput = document.getElementById('attachments');
+  const fileList = document.getElementById('fileList');
+  const fileError = document.getElementById('fileError');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.querySelector('.btn-text');
+  const spinner = document.getElementById('spinner');
+
+  let selectedFiles = [];
+
+  // File input change handler
+  fileInput.addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+    fileError.style.display = 'none';
+    
+    // Validate file count
+    if (files.length > 5) {
+      fileError.textContent = 'Максимальна кількість файлів: 5';
+      fileError.style.display = 'block';
+      fileInput.value = '';
+      return;
+    }
+
+    // Validate file sizes
+    const maxSize = 25 * 1024 * 1024; // 25MB in bytes
+    const oversizedFiles = files.filter(file => file.size > maxSize);
+    
+    if (oversizedFiles.length > 0) {
+      fileError.textContent = `Файл "${oversizedFiles[0].name}" перевищує ліміт 25MB`;
+      fileError.style.display = 'block';
+      fileInput.value = '';
+      return;
+    }
+
+    selectedFiles = files;
+    displayFiles();
+  });
+
+  // Display selected files
+  function displayFiles() {
+    fileList.innerHTML = '';
+    
+    selectedFiles.forEach((file, index) => {
+      const fileItem = document.createElement('div');
+      fileItem.className = 'file-item';
+      
+      const fileName = document.createElement('div');
+      fileName.className = 'file-name';
+      fileName.textContent = file.name;
+      
+      const fileSize = document.createElement('div');
+      fileSize.className = 'file-size';
+      fileSize.textContent = formatFileSize(file.size);
+      
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-file';
+      removeBtn.textContent = '×';
+      removeBtn.onclick = () => removeFile(index);
+      
+      fileItem.appendChild(fileName);
+      fileItem.appendChild(fileSize);
+      fileItem.appendChild(removeBtn);
+      fileList.appendChild(fileItem);
+    });
+  }
+
+  // Remove file from selection
+  function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    displayFiles();
+    
+    // Update the file input value
+    const dt = new DataTransfer();
+    selectedFiles.forEach(file => dt.items.add(file));
+    fileInput.files = dt.files;
+  }
+
+  // Format file size
+  function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  // Form submission
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    submitBtn.setAttribute('title', ' ');
+    spinner.style.display = 'block';
+    btnText.style.display = 'none';
+    
+    try {
+      const formData = new FormData();
+      
+      // Add form fields
+      formData.append('contact_mail', form.elements.contact_mail.value);
+      formData.append('contact_phone', form.elements.contact_phone.value);
+      formData.append('message', form.elements.message.value);
+      formData.append('test', true);
+      
+      // Add files
+      if (selectedFiles.length > 0) {
+        selectedFiles.forEach(file => {
+          formData.append('attachments', file);
+        });
+      } else {
+        formData.append('attachments', '');
+      }
+
+      // Send request
+      const response = await fetch('https://maksystems.org/drukpidtyskom-api/new-order', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        // Success
+        showSuccessMessage();
+        form.reset();
+        selectedFiles = [];
+        displayFiles();
+        closeModal();
+      } else {
+        // Error
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Помилка при відправці форми. Спробуйте ще раз.');
+    } finally {
+      // Hide loading state
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      submitBtn.setAttribute('title', 'Відправити заявку');
+      spinner.style.display = 'none';
+      btnText.style.display = 'block';
+    }
+  });
+
+  // Show success message
+  function showSuccessMessage() {
+    const toast = document.getElementById('sent-toast');
+    if (toast) {
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+    }
+  }
+});
 </script>
 </body>
 </html>
