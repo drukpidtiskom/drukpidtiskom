@@ -469,6 +469,13 @@ document.addEventListener('DOMContentLoaded', function() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
+  document.getElementById('viber-btn').addEventListener('click', function(e) {
+  e.preventDefault(); // щоб посилання ніде не переходило
+  const imgContainer = document.getElementById('viber-image');
+  // Перемикаємо видимість
+  imgContainer.style.display = imgContainer.style.display === 'none' ? 'block' : 'none';
+});
+
   // Form submission
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
