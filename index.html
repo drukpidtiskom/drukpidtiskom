@@ -307,42 +307,13 @@
   const slides = carousel.querySelectorAll('img');
   let currentIndex = 0;
 
-  // === Створюємо точки автоматично ===
-  const dotsContainer = document.createElement('div');
-  dotsContainer.className = 'carousel-nav';
-  carousel.parentElement.appendChild(dotsContainer);
-
-  const dots = [];
-  slides.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
-    dot.addEventListener('click', () => moveToSlide(index));
-    dotsContainer.appendChild(dot);
-    dots.push(dot);
-  });
-
-  // === Функції каруселі ===
-  function moveToSlide(index) {
-    currentIndex = index;
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-    updateDots();
-  }
-
   function moveSlide(direction) {
     currentIndex += direction;
     if (currentIndex < 0) currentIndex = slides.length - 1;
     if (currentIndex >= slides.length) currentIndex = 0;
-    moveToSlide(currentIndex);
+    // тут backticks, щоб ${currentIndex * 100}% підставилося
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
-
-  function updateDots() {
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
-  }
-
-  // === Початкове оновлення ===
-  updateDots();
 </script>
 
   <script>
