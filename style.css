@@ -257,7 +257,7 @@ section {
   width: 100%;
   display: block;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 /* Кнопки-стрілки без підкладу, лише SVG */
