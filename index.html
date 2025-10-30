@@ -307,7 +307,7 @@
   const slides = carousel.querySelectorAll('img');
   let currentIndex = 0;
 
-  // === Створення точок ===
+  // === Створюємо точки автоматично ===
   const dotsContainer = document.createElement('div');
   dotsContainer.className = 'carousel-nav';
   carousel.parentElement.appendChild(dotsContainer);
@@ -321,24 +321,27 @@
     dots.push(dot);
   });
 
-  // === Свайп на мобільних ===
-  let startX = 0;
-  let isSwiping = false;
+  // === Функції каруселі ===
+  function moveToSlide(index) {
+    currentIndex = index;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    updateDots();
+  }
 
-  carousel.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isSwiping = true;
-  });
+  function moveSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    moveToSlide(currentIndex);
+  }
 
-  carousel.addEventListener('touchend', (e) => {
-    if (!isSwiping) return;
-    const diff = e.changedTouches[0].clientX - startX;
-    const threshold = 50; // наскільки треба провести палець
-    if (diff > threshold) moveSlide(-1); // свайп вправо — попередній
-    else if (diff < -threshold) moveSlide(1); // свайп вліво — наступний
-    isSwiping = false;
-  });
+  function updateDots() {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
 
+  // === Початкове оновлення ===
   updateDots();
 </script>
 
