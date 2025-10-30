@@ -307,12 +307,65 @@
   const slides = carousel.querySelectorAll('img');
   let currentIndex = 0;
 
+  // === Створення точок ===
+  const dotsContainer = document.createElement('div');
+  dotsContainer.className = 'carousel-nav';
+  carousel.parentElement.appendChild(dotsContainer);
+
+  const dots = [];
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+    dot.addEventListener('click', () => moveToSlide(index));
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+  });
+
+  // === Функції ===
+  function moveToSlide(index) {
+    currentIndex = index;
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    updateDots();
+  }
+
   function moveSlide(direction) {
     currentIndex += direction;
     if (currentIndex < 0) currentIndex = slides.length - 1;
     if (currentIndex >= slides.length) currentIndex = 0;
-    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    moveToSlide(currentIndex);
   }
+
+  function updateDots() {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  // === Свайп на мобільних ===
+  let startX = 0;
+  let isSwiping = false;
+
+  carousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+  });
+
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isSwiping) return;
+    const diff = e.touches[0].clientX - startX;
+    // можна зробити візуальний preview, але поки без нього
+  });
+
+  carousel.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    const diff = e.changedTouches[0].clientX - startX;
+    const threshold = 50; // наскільки треба провести палець
+    if (diff > threshold) moveSlide(-1); // свайп вправо — попередній
+    else if (diff < -threshold) moveSlide(1); // свайп вліво — наступний
+    isSwiping = false;
+  });
+
+  updateDots();
 </script>
 
   <script>
