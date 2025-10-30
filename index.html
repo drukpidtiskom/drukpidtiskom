@@ -303,28 +303,17 @@
     </section>
   </div>
   <script>
-    const carousel = document.getElementById('carousel');
-    const caption = document.getElementById('carousel-caption');
-    const dots = document.querySelectorAll('.carousel-dot');
-    let currentIndex = 0;
+  const carousel = document.getElementById('carousel');
+  const slides = carousel.querySelectorAll('img');
+  let currentIndex = 0;
 
-    function moveToSlide(index) {
-      carousel.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
-      caption.innerHTML = captions[index];
-      currentIndex = index;
-    }
-
-    function moveSlide(direction) {
-      let newIndex = currentIndex + direction;
-      if (newIndex < 0) newIndex = captions.length - 1;
-      if (newIndex >= captions.length) newIndex = 0;
-      moveToSlide(newIndex);
-    }
-
-    moveToSlide(0);
-  </script>
+  function moveSlide(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+</script>
 
   <script>
   const modal = document.getElementById("orderModal");
